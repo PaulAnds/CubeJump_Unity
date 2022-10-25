@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Players
   - Spawn
+  - Shovel
   layers:
   - Default
   - TransparentFX
