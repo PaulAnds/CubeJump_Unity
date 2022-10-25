@@ -1,0 +1,11 @@
+-Arreglar powerup boost hacia arriba
+-arreglar la velocidad de la lava
+-meter musica
+-agregar items
+-pills te den escudos y protejan de el siguiente objeto
+-que se guarde lo de highscore y ultimos 4 scores
+-pasarlo todo a la mac y que sirva
+-arreglar el shovel con obstaculso
+
+
+//cuando agarra el powerup sube de 4-5 tiles	
