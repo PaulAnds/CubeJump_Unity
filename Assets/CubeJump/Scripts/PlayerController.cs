@@ -3,21 +3,23 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    #region "Variables"
     public float walkSpeed;
-    public float forceMult = 200f;
     public GameObject panelDied;
     public GameObject pauseScreen;
+    public bool powerJump = false;
     public static int ability;
     //public Animator anim;
 
     //private variables
-    public bool JumpRight = true;
-    public bool JumpLeft = false;
-    public bool touchingWall = false;//to se if it touches enemies while touching the wall
-    public bool powerJump = false;
+    private Vector3 oldrigid;
+    private bool JumpRight = true;
+    private bool JumpLeft = false;
+    private bool touchingWall = false;//to se if it touches enemies while touching the wall
     private Rigidbody rb;
-    DestroyPlayer destroy;
+    private DestroyPlayer destroy;
     private BoxCollider bc;
+    #endregion
 
     // Use this for initialization
     void Start()
@@ -38,7 +40,6 @@ public class PlayerController : MonoBehaviour
             //anim.SetBool("Right", true);
             //anim.SetBool("Stay", false);
             rb.velocity = new Vector3(-walkSpeed, 10, 0);
-            JumpLeft = false;
             touchingWall = false;
         }
         if(Input.GetMouseButtonDown(0) && JumpRight && !powerJump)
@@ -47,15 +48,11 @@ public class PlayerController : MonoBehaviour
             //anim.SetBool("Right", false);
             //anim.SetBool("Stay", false);
             rb.velocity = new Vector3(walkSpeed,10,0);
-            JumpRight = false;
             touchingWall = false;
         }
         if(ability >= 3 && touchingWall)
         {
-            bc.enabled = false;
-            rb.velocity = new Vector3(0, 20, 0);
-            powerJump = true;
-            Invoke("waitSeconds", 2f);
+            StartCoroutine(waitSecondsCo());
         }
         //anim.SetBool("Stay", true);
     }
@@ -66,12 +63,14 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log("Touching Left");
             JumpRight = true;
+            JumpLeft = false;
             touchingWall = true;
         }
         if (collision.gameObject.tag == "Right")
         {
             //Debug.Log("Touching Right");
             JumpLeft = true;
+            JumpRight = false;
             touchingWall = true;
         }
     }
@@ -81,7 +80,7 @@ public class PlayerController : MonoBehaviour
         if(other.tag == "Enemy")
         {
             //cuando choca con el enemigo
-            if (touchingWall)
+            if (touchingWall && destroy)
             {
                 //muere el jugador
                 panelDied.SetActive(true);
@@ -106,12 +105,24 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void waitSeconds()
+
+    IEnumerator waitSecondsCo()
     {
-        bc.enabled = true;
-        powerJump = false;
-        touchingWall = true;
+        //antes de 3 segundos
         ability = 0;
-        rb.velocity = new Vector3(walkSpeed, 0, 0);
+        oldrigid = rb.velocity;
+        Debug.Log(oldrigid);
+        bc.enabled = false;
+        //llama nomas una vexz lo del vector y despues de 3 ya se regresa a la normalidad poreso hace el brinco raro
+        rb.velocity = new Vector3(0, 20, 0);
+        powerJump = true;
+         
+        yield return new WaitForSeconds(3f);
+
+        bc.enabled = true;
+        rb.velocity = new Vector3(0, 10, 0);
+        powerJump = false;
+        //despues de 3 segundos
     }
+
 }

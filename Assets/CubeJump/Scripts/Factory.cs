@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Factory : MonoBehaviour
 {
+    #region "Variables"
     public GameObject prefab;
     public GameObject prefab2;
     public GameObject prefab3;
     public GameObject prefab4;
     public GameObject background;
     int randomInt;
+    #endregion
 
     public GameObject GetNewInstance()
     {

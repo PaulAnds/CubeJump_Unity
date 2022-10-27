@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    #region "Variables"
     public float transitionSpeed;
     private Vector3 newPos;
     public int points;
     private bool givePoints = true;
+    private PlayerController player;
+    #endregion
 
 
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<PlayerController>();
         newPos = new Vector3(1.65f, transform.position.y, transform.position.z);
     }
 
@@ -28,6 +32,10 @@ public class EnemyMovement : MonoBehaviour
         {
             newPos = new Vector3(-2f, transform.position.y, transform.position.z);
         }
+        if (player.powerJump)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,7 +43,6 @@ public class EnemyMovement : MonoBehaviour
         if(other.tag == "Player" && givePoints)
         {
             PlayerController.ability += 1;
-            Debug.Log(PlayerController.ability);
             ScoreManager.AddPoints(points);
             givePoints = false;
         }
