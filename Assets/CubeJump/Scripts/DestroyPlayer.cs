@@ -28,9 +28,14 @@ public class DestroyPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" )
         {
-            callReset();
+            if (!player.shield)
+            {
+                Debug.Log("Calling Reset");
+                callReset();
+            }
+            Destroy(gameObject);
         }
     }
 

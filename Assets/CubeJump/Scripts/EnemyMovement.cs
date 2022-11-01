@@ -12,7 +12,6 @@ public class EnemyMovement : MonoBehaviour
     private PlayerController player;
     #endregion
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +42,7 @@ public class EnemyMovement : MonoBehaviour
         if(other.tag == "Player" && givePoints)
         {
             PlayerController.ability += 1;
+            PlayerController.pill = 0;
             ScoreManager.AddPoints(points);
             givePoints = false;
         }

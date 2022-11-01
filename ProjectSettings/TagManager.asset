@@ -12,6 +12,7 @@ TagManager:
   - Players
   - Spawn
   - Shovel
+  - Pill
   layers:
   - Default
   - TransparentFX

@@ -6,9 +6,12 @@ public class PlayerController : MonoBehaviour
     #region "Variables"
     public float walkSpeed;
     public GameObject panelDied;
+    public GameObject shielded;
     public GameObject pauseScreen;
-    public bool powerJump = false;
+    public static int pill;
     public static int ability;
+    public bool powerJump = false;
+    public bool shield = false;
     //public Animator anim;
 
     //private variables
@@ -26,9 +29,11 @@ public class PlayerController : MonoBehaviour
     {
         bc = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
+        shielded.SetActive(false);
         destroy = FindObjectOfType<DestroyPlayer>();
         ability = 0;
-       // anim = gameObject.GetComponent<Animator>();
+        pill = 0;
+        // anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -53,6 +58,12 @@ public class PlayerController : MonoBehaviour
         if(ability >= 3 && touchingWall)
         {
             StartCoroutine(waitSecondsCo());
+        }
+        if(pill >= 3)
+        {
+            //el jugador conigue un escudo
+            shielded.SetActive(true);
+            shield = true;
         }
         //anim.SetBool("Stay", true);
     }
@@ -82,20 +93,44 @@ public class PlayerController : MonoBehaviour
             //cuando choca con el enemigo
             if (touchingWall && destroy)
             {
-                //muere el jugador
-                panelDied.SetActive(true);
-                ability = 0;
-                Destroy(gameObject);
-                destroy.callReset();
+                if (shield)
+                {
+                    Debug.Log("You lost shield");
+                    //el jugador pierde el escudo
+                    shielded.SetActive(false);
+                    shield = false;
+                    pill = 0;
+                }
+                else
+                {
+                    //muere el jugador
+                    panelDied.SetActive(true);
+                    ability = 0;
+                    pill = 0;
+                    Destroy(gameObject);
+                    destroy.callReset();
+                }
             }
             Destroy(other.gameObject);
         }
         if (other.tag == "Obstacle")
         {
-            //muere el jugador
-            panelDied.SetActive(true);
-            ability = 0;
-            Destroy(gameObject);
+            if (shield)
+            {
+                //el jugador pierde el escudo
+                Debug.Log("You lost shield");
+                shielded.SetActive(false);
+                pill = 0;
+                shield = false;
+            }
+            else
+            {
+                //muere el jugador
+                panelDied.SetActive(true);
+                ability = 0;
+                pill = 0;
+                Destroy(gameObject);
+            }
         }
         if (other.tag == "Lava")
         {
@@ -103,6 +138,11 @@ public class PlayerController : MonoBehaviour
             panelDied.SetActive(true);
             ability = 0;
             Destroy(gameObject);
+        }
+        if(other.tag == "Pill")
+        {
+            pill += 1;
+            ability = 0;
         }
     }
 
@@ -112,17 +152,17 @@ public class PlayerController : MonoBehaviour
         ability = 0;
         oldrigid = rb.velocity;
         Debug.Log(oldrigid);
-        bc.enabled = false;
+        //bc.enabled = false;
         //llama nomas una vexz lo del vector y despues de 3 ya se regresa a la normalidad poreso hace el brinco raro
         rb.velocity = new Vector3(0, 20, 0);
         powerJump = true;
          
         yield return new WaitForSeconds(3f);
 
-        bc.enabled = true;
+        //bc.enabled = true;
         rb.velocity = new Vector3(0, 10, 0);
         powerJump = false;
         //despues de 3 segundos
-    }
+    }   
 
 }
