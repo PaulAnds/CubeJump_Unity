@@ -5,19 +5,37 @@ using UnityEngine;
 
 public class DestroyPlayer : MonoBehaviour
 {
-
+    #region "Variables"
     public float waitTime = 3;
-    public GameObject pausebutton;
+    private GameObject pausebutton;
+    private PlayerController player;
+    public bool isLava;
+    #endregion
 
     private void Start()
     {
+        player = FindObjectOfType<PlayerController>();
         pausebutton = GameObject.Find("PauseButton");
     }
+
+    private void Update()
+    {
+        if (player.powerJump && !isLava)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" )
         {
-            callReset();
+            if (!player.shield)
+            {
+                Debug.Log("Calling Reset");
+                callReset();
+            }
+            Destroy(gameObject);
         }
     }
 
