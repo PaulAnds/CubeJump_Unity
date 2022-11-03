@@ -318,10 +318,10 @@ RectTransform:
   m_Father: {fileID: 914555530}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 498, y: 1303.7}
-  m_SizeDelta: {x: 320.132, y: 205.01}
+  m_AnchorMin: {x: 0.628, y: 0.9024756}
+  m_AnchorMax: {x: 0.9605001, y: 0.9861189}
+  m_AnchoredPosition: {x: 3.5, y: -1.0999756}
+  m_SizeDelta: {x: 1.1319885, y: -16.98999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &279412216
 MonoBehaviour:
@@ -680,7 +680,7 @@ PrefabInstance:
       objectReference: {fileID: 2043767659}
     - target: {fileID: 291999251027132620, guid: c658696a1e88a7b48855c76e9b3f008b, type: 3}
       propertyPath: m_VersionIndex
-      value: 5175
+      value: 5181
       objectReference: {fileID: 0}
     - target: {fileID: 393351036016313351, guid: c658696a1e88a7b48855c76e9b3f008b, type: 3}
       propertyPath: m_Mesh
@@ -690,6 +690,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2043767659}
+    - target: {fileID: 1936241912240909109, guid: c658696a1e88a7b48855c76e9b3f008b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3780e90d0b2cf448a2d36bd23561e11, type: 2}
+    - target: {fileID: 3501603956514962463, guid: c658696a1e88a7b48855c76e9b3f008b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3780e90d0b2cf448a2d36bd23561e11, type: 2}
     - target: {fileID: 4502233794817502172, guid: c658696a1e88a7b48855c76e9b3f008b, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -749,7 +757,7 @@ PrefabInstance:
     - target: {fileID: 7200122920513530334, guid: c658696a1e88a7b48855c76e9b3f008b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b6f81b520b0b65044aa6de647b9d4d06, type: 2}
+      objectReference: {fileID: 2100000, guid: 9689711a65f4d0e42a5fea2fe34e9920, type: 2}
     - target: {fileID: 7423969662909039142, guid: c658696a1e88a7b48855c76e9b3f008b, type: 3}
       propertyPath: m_Name
       value: Wall
@@ -760,7 +768,7 @@ PrefabInstance:
       objectReference: {fileID: 1356337718}
     - target: {fileID: 8613597469341141290, guid: c658696a1e88a7b48855c76e9b3f008b, type: 3}
       propertyPath: m_VersionIndex
-      value: 5442
+      value: 5448
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c658696a1e88a7b48855c76e9b3f008b, type: 3}
@@ -1811,7 +1819,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-100084
+  m_Name: pb_Mesh-7668
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2246,7 +2254,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e3eec689b618d4f43bc9ca50daaf9e11, type: 2}
+  - {fileID: 2100000, guid: e3780e90d0b2cf448a2d36bd23561e11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2778,7 +2786,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-100070
+  m_Name: pb_Mesh-7654
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3037,7 +3045,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-100122
+  m_Name: pb_Mesh-7706
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3375,7 +3383,7 @@ PrefabInstance:
     - target: {fileID: 7517151677540051207, guid: f62c514dbb5f4064880937dcf40f938e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: edbb461d7e52645479fa9064fe05426a, type: 2}
+      objectReference: {fileID: 2100000, guid: 0101523140c17194eb6c752b263a5b97, type: 2}
     - target: {fileID: 7517151679479128704, guid: f62c514dbb5f4064880937dcf40f938e, type: 3}
       propertyPath: m_RootOrder
       value: 3
