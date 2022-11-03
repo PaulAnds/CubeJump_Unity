@@ -7,7 +7,6 @@ public class DestroyPlayer : MonoBehaviour
 {
     #region "Variables"
     public float waitTime = 3;
-    private GameObject pausebutton;
     private PlayerController player;
     public bool isLava;
     #endregion
@@ -15,7 +14,6 @@ public class DestroyPlayer : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<PlayerController>();
-        pausebutton = GameObject.Find("PauseButton");
     }
 
     private void Update()
@@ -32,21 +30,29 @@ public class DestroyPlayer : MonoBehaviour
         {
             if (!player.shield)
             {
-                Debug.Log("Calling Reset");
+               // Debug.Log("Calling Reset");
                 callReset();
             }
-            Destroy(gameObject);
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
     public void callReset()
     {
-        pausebutton.SetActive(false);
-        Invoke("ResetGame", waitTime);
+       // Debug.Log("Calling ChangeScene");
+        StartCoroutine(ResetCo());
     }
-    public void ResetGame()
+
+    IEnumerator ResetCo()
     {
-        // Restarts the current level 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+       // Debug.Log("waiting 3 seconds");
+        Time.timeScale = 1.0f;
+        yield return new WaitForSeconds(3f);
+        //Debug.Log("Calling ChangeScene");
+        SceneManager.LoadScene("MenuScreen");
+
     }
 }

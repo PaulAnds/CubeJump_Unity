@@ -11,25 +11,25 @@ public class PlayerController : MonoBehaviour
     public static int pill;
     public static int ability;
     public bool powerJump = false;
+    public bool SpeedJump = false;
     public bool shield = false;
     //public Animator anim;
 
     //private variables
-    private Vector3 oldrigid;
     private bool JumpRight = true;
     private bool JumpLeft = false;
     private bool touchingWall = false;//to se if it touches enemies while touching the wall
     private Rigidbody rb;
+    private ScoreManager scoremanager;
     private DestroyPlayer destroy;
-    private BoxCollider bc;
     #endregion
 
     // Use this for initialization
     void Start()
     {
-        bc = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
         shielded.SetActive(false);
+        scoremanager = FindObjectOfType<ScoreManager>();
         destroy = FindObjectOfType<DestroyPlayer>();
         ability = 0;
         pill = 0;
@@ -39,6 +39,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SpeedJump)
+        {
+            rb.velocity = new Vector3(0, 20, 0);
+        }
         if (Input.GetMouseButtonDown(0) && JumpLeft && !powerJump)
         {
             //Debug.Log("Jumping Left");
@@ -105,6 +109,7 @@ public class PlayerController : MonoBehaviour
                 {
                     //muere el jugador
                     panelDied.SetActive(true);
+                    scoremanager.keepadding = false;
                     ability = 0;
                     pill = 0;
                     Destroy(gameObject);
@@ -127,6 +132,7 @@ public class PlayerController : MonoBehaviour
             {
                 //muere el jugador
                 panelDied.SetActive(true);
+                scoremanager.keepadding = false;
                 ability = 0;
                 pill = 0;
                 Destroy(gameObject);
@@ -136,6 +142,8 @@ public class PlayerController : MonoBehaviour
         {
             //muere el jugador
             panelDied.SetActive(true);
+            scoremanager.keepadding = false;
+            pill = 0;
             ability = 0;
             Destroy(gameObject);
         }
@@ -150,17 +158,17 @@ public class PlayerController : MonoBehaviour
     {
         //antes de 3 segundos
         ability = 0;
-        oldrigid = rb.velocity;
-        Debug.Log(oldrigid);
         //bc.enabled = false;
         //llama nomas una vexz lo del vector y despues de 3 ya se regresa a la normalidad poreso hace el brinco raro
-        rb.velocity = new Vector3(0, 20, 0);
+        //rb.velocity = new Vector3(0, 20, 0);
         powerJump = true;
-         
-        yield return new WaitForSeconds(3f);
+        SpeedJump = true;
+        yield return new WaitForSeconds(2f);
+        
+        SpeedJump = false;
+        yield return new WaitForSeconds(1f);
 
         //bc.enabled = true;
-        rb.velocity = new Vector3(0, 10, 0);
         powerJump = false;
         //despues de 3 segundos
     }   

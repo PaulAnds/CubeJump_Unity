@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 223916a9d283b5c489033b1b71dc0c89
   - enabled: 1
     path: Assets/CubeJump/Scenes/GameScreen.unity
-    guid: 5f9ceb24fb2056b40b11b5ed5842c0da
+    guid: a807216f273787941965b298827d6d13
   - enabled: 1
     path: Assets/CubeJump/Scenes/ScoreScreen.unity
     guid: 1b61e50adf9d70f4dafe29b42b4eef24

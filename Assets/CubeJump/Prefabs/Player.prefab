@@ -146,7 +146,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4471114ca6fe1354c921b6e7c4e82362, type: 2}
+  - {fileID: 2100000, guid: edbb461d7e52645479fa9064fe05426a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -474,6 +474,7 @@ MonoBehaviour:
   shielded: {fileID: 6172437757894893871}
   pauseScreen: {fileID: 0}
   powerJump: 0
+  SpeedJump: 0
   shield: 0
 --- !u!65 &7517151679479128705
 BoxCollider:

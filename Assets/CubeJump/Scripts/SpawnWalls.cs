@@ -30,7 +30,7 @@ public class SpawnWalls : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Spawn" && spawn)
+        if (other.tag == "Player" && spawn)
         {//when player gets to the trigger spawn next tile once
             //Debug.Log("Spawning next tile");
             var inst = Factory.GetNewInstance();

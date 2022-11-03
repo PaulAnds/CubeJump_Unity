@@ -8,21 +8,27 @@ public class ScoreManager : MonoBehaviour
     public static int score;
     public float added;
     public Text scoreText;
+    public bool keepadding;
 
 
     private void Start()
     {
         score = 0;
+        keepadding = true;
     }
 
     private void Update()
     {
-        if (score < 0)
+        if (keepadding)
         {
-            score = 0;
+            if (score < 0)
+            {
+                score = 0;
+            }
+            added += Time.deltaTime;
+            scoreText.text = "" + (score + (int)added);
+            PlayerPrefs.SetInt("score", score + (int)added);
         }
-        added += Time.deltaTime;
-        scoreText.text = "" + (score + (int)added);
     }
 
     public static void AddPoints(int _pointstoAdd)
